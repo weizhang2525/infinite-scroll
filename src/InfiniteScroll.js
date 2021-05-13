@@ -7,14 +7,8 @@ const StyledImage = styled.img`
   width: 100%;
 `;
 
-const InfiniteScroll = ({ startInterval, endInterval }) => {
-  const [interval, setInterval] = useState(startInterval);
-
+const InfiniteScroll = ({ fetchContent, hasMore, content }) => {
   const [page, setPage] = useState(1);
-
-  const [thumbnails, setThumbnails] = useState([]);
-
-  const [hasMore, setHasMore] = useState(true);
 
   const [loading, setLoading] = useState(false);
 
@@ -35,40 +29,24 @@ const InfiniteScroll = ({ startInterval, endInterval }) => {
   );
 
   useEffect(() => {
-    fetchImages(30);
-  }, [page]);
-
-  const fetchImages = async (num) => {
     setLoading(true);
-    let tempInterval = interval;
-    for (let i = 0; i < num; i++) {
-      const url = `https://hiring.verkada.com/thumbs/${tempInterval}.jpg`;
-      if (tempInterval === endInterval) {
-        setHasMore(false);
-        break;
-      } else {
-        setHasMore(true);
-      }
-      setThumbnails((prev) => [...prev, url]);
-      tempInterval += 20;
-    }
-    setInterval(tempInterval);
+    fetchContent();
     setLoading(false);
-  };
+  }, [page]);
 
   return (
     <>
       <Grid columns={[3, null, 3]}>
-        {thumbnails.map((thumbnail, key) => {
-          return key === thumbnails.length - 1 ? (
+        {content.map((c, key) => {
+          return key === content.length - 1 ? (
             <StyledImage
-              src={thumbnail}
-              alt={`thumbnail${key}`}
+              src={c}
+              alt={`picture${key}`}
               key={key}
               ref={lastThumbnailRef}
             />
           ) : (
-            <StyledImage src={thumbnail} alt={`thumbnail${key}`} key={key} />
+            <StyledImage src={c} alt={`picture${key}`} key={key} />
           );
         })}
       </Grid>

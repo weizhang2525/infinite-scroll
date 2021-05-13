@@ -6,10 +6,33 @@ Installed dependecies:
 -Theme-UI 
 -styled-components
 
-The combination of these two libraries allows me to create useable components that are prestyled.
+The combination of these two libraries allows me to create useable components that can be styled and exported without dependency on CSS classes.
 
-Thought Process:
-- Load the first 30 thumbnail pictures by utlizing UseEffect hook so it does not affect any other content on the page. 
-- Challenge I faced: how can I implement lazy loading so that when a user scrolls to a certain spot of the page, the fetchImages function is called again to fetch more thumbnails to display?
-- Resource referenced for lazy loading: https://www.youtube.com/watch?v=NZKUirTtxcg
+Inintial Thought Process:
+- When I first saw the task, I thought of iterating all 100,000+ images and storing them in the cache so it could be accessed but this method was a was of memory. It also did not fit the requirement of the challenge
+- The afterthought was to lazy load the images somehow as the user is scrolling through the thumbnails but the challenge was that I didn't know how to do this.
 
+
+Assumption:
+- Reference to online tutorials on implementations I'm not familiar with is not against the rule of the challenge.
+
+
+Implementation Process:
+- Ininiated empty React project with npx-create-react-app and removed all unncessary files 
+- Created a function to load 30 thumbnail pictures and stored them in a thumbnails list state. 
+- Initialized the page by loading the first 30 intervals in UseEffect hook to make sure I was loading the thumbnails correctly.
+- Mapped through each thumbnail to display them in a grid of 3
+
+----how to create lazy loading----
+- referenced https://www.youtube.com/watch?v=NZKUirTtxcg on how to use useRef and IntersectionObserver to lazy load thumbnails before user reaches the end of page
+
+----refactoring to make the component more reusable----
+- referenced react-infinite-scroll-compoent (https://www.npmjs.com/package/react-infinite-scroll-component) to uncover what props should be passed in into my custom component to make it as reusable as possible.
+- custom component now take in required props which are:
+    - fetchContent 
+    - hasMore refers to at what point should the infinite scroll should stop fetching for new content
+    - content refers to the data that need to be mapped and displayed to the user, in our case, thumbnails were passed from parent to the custom component to be rendered 
+
+----extra function ----
+- I thought it would be nice UX to have a scroll to top button for user to click when user wants to scroll back to top
+- referenced https://www.coderomeos.org/scroll-to-top-of-the-page-a-simple-react-component
