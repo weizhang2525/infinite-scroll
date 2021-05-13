@@ -8,12 +8,14 @@ const StyledImage = styled.img`
 `;
 
 const InfiniteScroll = ({ fetchContent, hasMore, content }) => {
+  // helper hooks
   const [page, setPage] = useState(1);
-
   const [loading, setLoading] = useState(false);
-
   const observer = useRef();
 
+  // this callback function is attached to the last element of the content. it checks if the last element of the content being render
+  // is visible or not.
+  // if it is visible, it adds 1 to the page state which then triggers the useeffect to grab fetch more data if there is more to fetch.
   const lastThumbnailRef = useCallback(
     (node) => {
       if (loading) return;
@@ -28,6 +30,7 @@ const InfiniteScroll = ({ fetchContent, hasMore, content }) => {
     [loading, hasMore]
   );
 
+  // useEffect hook to rerender content based on the page state changes
   useEffect(() => {
     setLoading(true);
     fetchContent();
