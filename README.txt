@@ -35,4 +35,4 @@ Implementation Process:
 
 ----extra function ----
 - I thought it would be nice UX to have a scroll to top button for user to click when user wants to scroll back to top
-- referenced https://www.coderomeos.org/scroll-to-top-of-the-page-a-simple-react-component
+- referenced https://www.geeksforgeeks.org/how-to-create-a-scroll-to-top-button-in-react-js/

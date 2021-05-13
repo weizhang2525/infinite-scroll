@@ -1,5 +1,6 @@
 import InfiniteScroll from "./InfiniteScroll";
 import React, { useState } from "react";
+import ScrollToTopBtn from "./ScrollToTopBtn";
 
 function App() {
   const [interval, setInterval] = useState(1500348260);
@@ -23,11 +24,14 @@ function App() {
   };
 
   return (
-    <InfiniteScroll
-      fetchContent={fetchImages}
-      hasMore={hasMore}
-      content={thumbnails}
-    />
+    <>
+      <InfiniteScroll
+        fetchContent={fetchImages}
+        hasMore={hasMore}
+        content={thumbnails}
+      />
+      <ScrollToTopBtn />
+    </>
   );
 }
 
