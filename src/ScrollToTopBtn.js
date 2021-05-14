@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "theme-ui";
 
 const ScrollButton = () => {
+  // visible state used to
   const [visible, setVisible] = useState(false);
 
+  // function that changes visible state when it is scrolled past a certain distance from the top
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > 300) {
@@ -13,6 +15,7 @@ const ScrollButton = () => {
     }
   };
 
+  // trigger that takes the window back to the top of root
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
