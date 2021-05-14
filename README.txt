@@ -36,6 +36,6 @@ Implementation Process:
 - yes but for the requirement and time stake of this task, only imgs are supported, HOWEVER, to support other elements, it can be refactored
 - on the parent level of the component, developer can pass down a list of elements to be rendered as props which then at the custom infinite scroll level, it just needs to simply map through and return each element, and last index of item will need to pass the speical ref observer.
 
-----extra functionality----
+----bonus functionality----
 - I thought it would be nice UX to have a scroll to top button for user to click when user wants to scroll back to top
 - referenced https://www.geeksforgeeks.org/how-to-create-a-scroll-to-top-button-in-react-js/
